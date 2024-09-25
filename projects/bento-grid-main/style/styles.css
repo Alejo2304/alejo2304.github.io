@@ -1,0 +1,55 @@
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+body {
+    padding-inline: 3rem;
+    padding-block: 4rem;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.child-1 {
+    grid-column: span 1;
+    gap: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#large-rectangle {
+    grid-row: span 1;
+}
+
+.child-2 {
+    grid-column: span 2;
+    gap: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+#big-rectangle {
+    grid-column: span 2;
+    grid-row: span 4;
+}
+
+#larger-rectangle {
+    grid-column: span 1;
+    grid-row: span 6;
+}
+
+#wide-rectangle {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+#box{
+    grid-column: span 1;
+    grid-row: span 2;
+}
