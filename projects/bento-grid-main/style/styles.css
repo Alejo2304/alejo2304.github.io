@@ -14,8 +14,8 @@ body {
 }
 
 .wrapper {
-    width: auto;
-    height: auto;
+    max-width: 80vw;
+    max-height: 60vh;
     margin: 0 auto;
 
 
