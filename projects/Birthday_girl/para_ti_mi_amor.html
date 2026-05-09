@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti, Mi Amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --rose: #c2607a;
+    --rose-light: #f5dde4;
+    --rose-pale: #fdf0f3;
+    --rose-deep: #8b3a52;
+    --cream: #faf7f2;
+    --warm-gray: #8c7b7b;
+    --text-dark: #2e1f24;
+    --text-mid: #6b4f57;
+    --gold: #b8956a;
+    --gold-light: #f0e6d6;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background-color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* Subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Decorative corner petals */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(194,96,122,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .header .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.05;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .header .subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Decorative line */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 3.5rem;
+    width: fit-content;
+  }
+  .ornament span { color: var(--rose); font-size: 1.1rem; }
+  .ornament .line {
+    width: 60px;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  }
+
+  /* Card container */
+  .card-wrapper {
+    width: 100%;
+    max-width: 680px;
+    position: relative;
+  }
+
+  /* Background card shadow effect */
+  .card-wrapper::before,
+  .card-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    background: var(--rose-light);
+    border-radius: 20px;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .card-wrapper::before {
+    width: calc(100% - 40px);
+    height: 100%;
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0.5;
+    z-index: -2;
+  }
+  .card-wrapper::after {
+    width: calc(100% - 20px);
+    height: 100%;
+    transform: translateX(-50%) translateY(8px);
+    opacity: 0.7;
+    z-index: -1;
+  }
+  .card-wrapper:hover::before { transform: translateX(-50%) translateY(20px); }
+  .card-wrapper:hover::after { transform: translateX(-50%) translateY(12px); }
+
+  /* Main card */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 6vw, 4rem);
+    border: 0.5px solid rgba(194,96,122,0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  /* Card corner decorations */
+  .card::before {
+    content: '❧';
+    position: absolute;
+    top: 1.2rem;
+    left: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--rose-light);
+    opacity: 0.8;
+  }
+  .card::after {
+    content: '❧';
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--rose-light);
+    opacity: 0.8;
+    transform: rotate(180deg);
+  }
+
+  /* Phrase display */
+  .phrase-area {
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phrase-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 3.5vw, 1.85rem);
+    line-height: 1.55;
+    color: var(--text-dark);
+    letter-spacing: 0.01em;
+    max-width: 540px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .phrase-text.hidden {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .phrase-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Counter */
+  .counter {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* Button */
+  .btn-wrap {
+    margin-top: 0.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 24px rgba(194,96,122,0.3);
+  }
+
+  .btn:hover {
+    background: var(--rose-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(194,96,122,0.35);
+  }
+
+  .btn:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  .btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s ease;
+  }
+
+  .btn:hover svg {
+    transform: rotate(20deg);
+  }
+
+  /* Floating hearts */
+  .heart-float {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.2rem;
+    opacity: 0;
+    z-index: 999;
+    animation: floatUp 2s ease-out forwards;
+  }
+
+  @keyframes floatUp {
+    0% { opacity: 0.8; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-120px) scale(0.5) rotate(20deg); }
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3.5rem;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    opacity: 0.7;
+  }
+
+  /* Bottom decoration */
+  .bottom-glow {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(194,96,122,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <header class="header">
+    <p class="eyebrow">Una colección para ti</p>
+    <h1>Con todo<br>mi <em>amor</em></h1>
+    <p class="subtitle">Cada frase, escrita desde el corazón</p>
+  </header>
+
+  <div class="ornament">
+    <div class="line"></div>
+    <span>♡</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="phrase-area">
+        <p class="phrase-text visible" id="phrase">
+          Presiona el botón y recibe un mensaje de amor...
+        </p>
+      </div>
+      <p class="counter" id="counter"></p>
+      <div class="btn-wrap">
+        <button class="btn" id="mainBtn" onclick="nextPhrase()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          Recibir amor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Hecho con todo mi amor, para ti — siempre
+  </footer>
+</div>
+
+<div class="bottom-glow"></div>
+
+<script>
+const phrases = [
+  "Eres la razón más hermosa por la que me despierto cada mañana.",
+  "En tus ojos encontré el hogar que siempre busqué.",
+  "Eres mi calma en medio de cualquier tormenta.",
+  "Cada día junto a ti es el mejor día de mi vida.",
+  "Tu sonrisa tiene el poder de iluminar mis días más oscuros.",
+  "Gracias por amarme incluso cuando yo mismo lo olvido.",
+  "Eres la persona más valiente y bella que conozco.",
+  "Mi vida tiene más color desde que entraste en ella.",
+  "Eres mi lugar favorito en todo el mundo.",
+  "Te admiro profundamente, en todo lo que eres y haces.",
+  "Tu presencia transforma cualquier lugar en paraíso.",
+  "Eres la melodía perfecta en la sinfonía de mi vida.",
+  "Cada momento a tu lado es un regalo que atesoro.",
+  "Me enamoro de ti de nuevo cada vez que te veo reír.",
+  "Eres extraordinaria, incluso cuando tú no lo ves.",
+  "Gracias por ser mi compañera, mi amiga y mi amor.",
+  "Contigo, incluso los días ordinarios se vuelven especiales.",
+  "Tu fortaleza me inspira a ser mejor cada día.",
+  "Eres todo lo que siempre soñé y más.",
+  "Te quiero hoy, mañana y todos los días que estén por venir.",
+  "Eres la aventura más bella en la que he embarcado.",
+  "Tu amor es la luz que guía cada paso que doy.",
+  "Me fascina descubrirte un poco más cada día.",
+  "Eres un milagro que tengo la fortuna de llamar mío.",
+  "Gracias por hacer de este mundo un lugar más hermoso.",
+  "Tu ternura llega a los rincones más profundos de mi ser.",
+  "Eres la respuesta a preguntas que ni siquiera sabía que tenía.",
+  "Con tan solo tu presencia, el mundo tiene más sentido.",
+  "Eres mi mayor motivación para crecer y mejorar.",
+  "Cada abrazo tuyo es el mejor lugar del universo.",
+  "Te amo con toda la profundidad que cabe en mi corazón.",
+  "Eres brillante, capaz y completamente increíble.",
+  "Mi amor por ti crece con cada amanecer que compartimos.",
+  "Eres la poesía más hermosa que he tenido el privilegio de vivir.",
+  "Gracias por confiar en mí, te lo honro cada día.",
+  "Eres mi compañera perfecta para esta y todas las vidas.",
+  "Tu risa es la canción más bonita que han oído mis oídos.",
+  "Eres especial de una manera que las palabras apenas alcanzan.",
+  "Todo lo bueno que tengo lleva tu nombre.",
+  "Eres el sueño más bello que se ha hecho realidad.",
+  "Nadie en el mundo me conoce y me ama como tú lo haces.",
+  "Eres mi fuerza cuando la mía se agota.",
+  "Contigo encontré el significado de verdadero amor.",
+  "Eres la persona que mi corazón elegiría una y otra vez.",
+  "Tu amor me hace sentir invencible.",
+  "Gracias por aceptarme completo, imperfecciones incluidas.",
+  "Eres mi favorita en absolutamente todo.",
+  "El universo fue muy generoso conmigo cuando te puso en mi camino.",
+  "Contigo, cada reto se vuelve posible de superar.",
+  "Eres mi mayor tesoro y mi más grande bendición.",
+  "Me alegra tanto que existas y que seas parte de mi vida.",
+  "Tu presencia hace que todo valga más la pena.",
+  "Eres la razón por la que creo en el amor verdadero.",
+  "Gracias por ser mi ancla y también mis alas.",
+  "Eres más fuerte de lo que crees, y yo lo sé.",
+  "Tu amor es el regalo más grande que he recibido.",
+  "Eres la mejor compañía en este camino llamado vida.",
+  "Me siento el ser más afortunado del mundo por tenerte.",
+  "Eres dulce, brillante y completamente irresistible.",
+  "Todo en ti me enamora, cada día más.",
+  "Eres mi paz, mi alegría y mi hogar.",
+  "Gracias por elegirme también a mí, cada día.",
+  "Eres quien convierte mis sueños en algo que vale la pena alcanzar.",
+  "Tu valor y dedicación me dejan sin palabras.",
+  "Eres la persona más maravillosa que he tenido el honor de amar.",
+  "Contigo la vida se siente completa y llena de propósito.",
+  "Eres mi inspiración constante para ser mejor.",
+  "Cada pensamiento bueno que tengo, termina en ti.",
+  "Eres la razón detrás de mi mejor versión.",
+  "Tu amor es la brújula que me orienta cuando me pierdo.",
+  "Eres perfecta tal como eres, no cambies nada.",
+  "Gracias por llenar mis días de significado y de amor.",
+  "Eres la definición de todo lo que es hermoso en este mundo.",
+  "Mi corazón siempre sabrá encontrarte sin importar nada.",
+  "Eres valiente aunque tú a veces no lo notes.",
+  "Cada detalle tuyo me fascina y me enamora.",
+  "Contigo descubrí que el amor puede ser sereno y apasionado a la vez.",
+  "Eres el tipo de persona que hace mejor a todos a su alrededor.",
+  "Gracias por quererme con tanta dedicación y ternura.",
+  "Eres la historia más bonita que mi vida ha contado.",
+  "Tu amor es cálido, profundo y completamente transformador.",
+  "Eres todo lo que necesito en un solo ser.",
+  "Me encanta despertar sabiendo que te tengo a ti.",
+  "Eres la razón más dulce de todas mis sonrisas.",
+  "Gracias por ser tan auténtica y tan increíble.",
+  "Eres un regalo que nunca merecí pero que cuido con mi vida.",
+  "Tu amor me ha enseñado cosas que ningún libro podría.",
+  "Eres mi compañera de vida ideal y mucho más.",
+  "Cada vez que te miro, me maravillo de tenerte.",
+  "Eres el tipo de amor que poetas buscan describir.",
+  "Gracias por tu paciencia, tu ternura y tu amor infinito.",
+  "Eres impresionante en todo sentido de la palabra.",
+  "Mi amor por ti no tiene fondo ni límite.",
+  "Eres la persona con quien quiero envejecer.",
+  "Cada segundo a tu lado es tiempo bien vivido.",
+  "Eres mi razón para creer que todo pasa por algo.",
+  "Gracias por hacer de nuestra vida algo tan bonito.",
+  "Eres el mejor capítulo en el libro de mi vida.",
+  "Tu amor es el tipo de amor que sana y eleva.",
+  "Eres todo lo que mi corazón supo que necesitaba.",
+  "Me llevas en el pensamiento en absolutamente todos mis momentos.",
+  "Eres la persona con quien quiero compartir mis victorias y mis miedos.",
+  "Gracias por creer en mí cuando yo dudo de mí mismo.",
+  "Eres brillante como nadie más que conozco.",
+  "Tu presencia es suficiente para hacerme feliz.",
+  "Eres la mujer de mi vida, sin ninguna duda.",
+  "Cada 'te amo' que te digo viene de lo más profundo de mí.",
+  "Eres quien le da sentido a todo lo que hago.",
+  "Gracias por amar así, con tanta entrega y corazón.",
+  "Eres más de lo que cualquier palabra puede describir.",
+  "Tu amor transforma lo cotidiano en algo sagrado.",
+  "Eres la compañera que soñé y la que necesitaba.",
+  "Me amas de la manera exacta en que mi corazón necesitaba ser amado.",
+  "Eres mi refugio favorito en este mundo tan grande.",
+  "Cada día me enamoró de ti de una manera diferente.",
+  "Eres la persona a quien quiero contarle todo.",
+  "Gracias por tu amor que es firme, tierno y constante.",
+  "Eres lo más precioso que tengo en esta vida.",
+  "Tu felicidad es mi mayor propósito.",
+  "Eres quien me recuerda que vale la pena el amor.",
+  "Cada acto tuyo de amor queda grabado en mi alma.",
+  "Eres mi motivación más poderosa y más bella.",
+  "Gracias por ser tan increíblemente tú.",
+  "Eres la razón por la que creo en las cosas bonitas.",
+  "Tu amor me llena de una forma que nada más podría.",
+  "Eres la persona más importante en mi universo.",
+  "Me haces mejor simplemente con existir en mi vida.",
+  "Eres mi historia favorita y quiero seguir escribiéndola contigo.",
+  "Gracias por tu amor que no conoce condiciones.",
+  "Eres todo lo que mi vida necesitaba para tener sentido.",
+  "Tu amor es mi fuerza y mi mayor alegría.",
+  "Eres la razón por la que el futuro me emociona.",
+  "Cada mañana doy gracias porque estás en mi vida.",
+  "Eres el amor con el que quiero quedarme para siempre.",
+  "Gracias por todo lo que eres y todo lo que me das.",
+  "Eres y siempre serás mi persona favorita en el mundo.",
+  "Tu amor es el más bonito que he conocido y conoceré.",
+  "Eres mi todo, en el sentido más profundo de esa palabra.",
+  "Me haces sentir amado, completo y en el lugar correcto.",
+  "Eres la definición viva de lo que es el amor verdadero.",
+  "Gracias por cada día que me das tu amor tan generosamente.",
+  "Eres mi razón más dulce y más bonita de sonreír.",
+  "Tu amor es el hogar más cálido que jamás he encontrado.",
+  "Eres quien hace que cada momento valga infinitamente más.",
+  "Gracias por existir y por dejarme amarte todos los días.",
+  "Eres la persona que mi corazón siempre estuvo buscando.",
+  "Tu amor es el más bonito regalo que la vida me ha dado.",
+  "Eres mi amor, mi amiga y la persona que más admiro en el mundo.",
+];
+
+let usedIndices = [];
+let currentIndex = -1;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let shuffledIndices = shuffle([...Array(phrases.length).keys()]);
+let pointer = 0;
+
+function nextPhrase() {
+  const el = document.getElementById('phrase');
+  const counter = document.getElementById('counter');
+
+  // Float hearts
+  spawnHearts();
+
+  el.classList.remove('visible');
+  el.classList.add('hidden');
+
+  setTimeout(() => {
+    if (pointer >= shuffledIndices.length) {
+      shuffledIndices = shuffle([...Array(phrases.length).keys()]);
+      pointer = 0;
+    }
+    currentIndex = shuffledIndices[pointer++];
+    el.textContent = phrases[currentIndex];
+    counter.textContent = `${pointer} de ${phrases.length} frases`;
+    el.classList.remove('hidden');
+    el.classList.add('visible');
+  }, 480);
+}
+
+function spawnHearts() {
+  const btn = document.getElementById('mainBtn');
+  const rect = btn.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const hearts = ['♡', '♡', '♡', '❤', '♡'];
+
+  hearts.forEach((h, i) => {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'heart-float';
+      el.textContent = h;
+      el.style.left = (cx + (Math.random() - 0.5) * 80) + 'px';
+      el.style.top = cy + 'px';
+      el.style.color = `hsl(${340 + Math.random() * 20}, 70%, ${55 + Math.random() * 15}%)`;
+      el.style.fontSize = (0.9 + Math.random() * 0.6) + 'rem';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2100);
+    }, i * 80);
+  });
+}
+</script>
+</body>
+</html>
